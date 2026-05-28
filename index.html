@@ -808,7 +808,12 @@
                     piece.style.height = pieceH + 'px';
                     piece.style.left = (c * pieceW) + 'px';
                     piece.style.top = (r * pieceH) + 'px';
+                    
+                    // Force the image URL and size directly via JavaScript
+                    piece.style.backgroundImage = "url('Images\logo_Trans.png')"; 
+                    piece.style.backgroundSize = "192px 192px";
                     piece.style.backgroundPosition = `-${c * pieceW}px -${r * pieceH}px`;
+                    
                     container.appendChild(piece);
                 }
             }
