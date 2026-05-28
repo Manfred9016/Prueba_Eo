@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EO Cards | Your Story. Your Passion. Your Card.</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Rajdhani', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#0a0a0f',
+                        primary: '#0066ff',
+                        secondary: '#00f0ff',
+                        gold: '#ffd700',
+                        diamond: '#b9f2ff',
+                        mythic: '#ff4500'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0066ff;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f0ff;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-glow {
+            position: relative;
+            z-index: 1;
+        }
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, #0066ff, #00f0ff, #ffd700, #ff4500);
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            border-radius: inherit;
+        }
+        .btn-glow:hover::before {
+            opacity: 0.8;
+        }
+
+        .nav-link.active {
+            color: #00f0ff;
+            border-bottom: 2px solid #00f0ff;
+            padding-bottom: 4px;
+        }
+
+        .loader-hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Shatter Effect Styles */
+        .shatter-piece {
+            position: absolute;
+            background-image: url('Images\logo_Trans.png');
+            background-size: 192px 192px;
+            background-repeat: no-repeat;
+            box-shadow: inset 0 0 1px rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body class="bg-dark text-white overflow-x-hidden">
+
+    <div id="loader" class="fixed inset-0 z-50 bg-dark flex flex-col items-center justify-center transition-opacity duration-500">
+        <div id="shatter-container" class="relative w-[192px] h-[192px] mb-6 shadow-[0_0_30px_rgba(0,102,255,0.4)] rounded-xl border border-primary/30 bg-transparent perspective-1000">
+            </div>
+        <h2 id="loading-text" class="text-2xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary tracking-widest uppercase italic mt-2">Loading...</h2>
+    </div>
+
+    <div class="fixed inset-0 z-[-1] pointer-events-none">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[120px]"></div>
+    </div>
+
+    <nav class="fixed w-full z-40 glass border-b border-white/10 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                
+                <a href="#" onclick="navigate('home')" class="text-3xl font-display font-black italic tracking-wider flex items-center gap-3">
+                    EO<span class="text-primary">CARDS</span>
+                    <img src="Images\logo_Trans.png" alt="EO Cards Logo" class="h-10 w-10 md:h-12 md:w-12 rounded-lg object-contain shadow-[0_0_15px_rgba(0,102,255,0.3)] border border-primary/20">
+                </a>
+                
+                <div class="hidden md:flex space-x-8 items-center font-bold tracking-wide">
+                    <a href="#" onclick="navigate('home')" class="nav-link hover:text-secondary transition-colors active">HOME</a>
+                    <a href="#" onclick="navigate('collections')" class="nav-link hover:text-secondary transition-colors">COLLECTIONS</a>
+                    <a href="#" onclick="navigate('rarity')" class="nav-link hover:text-secondary transition-colors">RARITIES</a>
+                    <a href="#" onclick="navigate('shop')" class="nav-link hover:text-secondary transition-colors">SHOP</a>
+                    <a href="#" onclick="navigate('payment')" class="nav-link hover:text-secondary transition-colors text-secondary">PAYMENT METHODS</a>
+                    <a href="#" onclick="navigate('faq')" class="nav-link hover:text-secondary transition-colors">FAQ</a>
+                    <a href="#" onclick="navigate('contact')" class="nav-link hover:text-secondary transition-colors">CONTACT</a>
+                    <button onclick="navigate('builder')" class="btn-glow bg-gradient-to-r from-primary to-secondary px-6 py-2 rounded-lg font-display uppercase">
+                        Build Card
+                    </button>
+                </div>
+
+                <button class="md:hidden text-2xl" id="mobile-menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main id="app-content" class="pt-24 min-h-screen">
+        
+        <section id="home" class="page-view block">
+            <div class="container mx-auto px-6 py-12 lg:py-24">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="hero-content z-10">
+                        <h1 class="text-5xl lg:text-7xl font-display font-black leading-tight mb-6 uppercase italic">
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Your Story.</span><br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Your Passion.</span><br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-200">Your Card.</span>
+                        </h1>
+                        <p class="text-xl text-gray-400 mb-8 max-w-lg">
+                            EO Cards is the premium custom sports card collection for kids and teens. Collect. Compete. Make History.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <button onclick="navigate('collections')" class="bg-primary hover:bg-blue-600 px-8 py-3 rounded-lg font-bold font-display uppercase transition-all shadow-[0_0_15px_rgba(0,102,255,0.5)]">
+                                Explore Collections
+                            </button>
+                            <button onclick="navigate('builder')" class="glass hover:bg-white/10 px-8 py-3 rounded-lg font-bold font-display uppercase transition-all border border-white/20">
+                                Create My Card
+                            </button>
+                        </div>
+                    </div>
+                    <div class="swiper heroSwiper w-full h-[500px] z-10" data-aos="fade-left">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide flex justify-center items-center">
+                                <div class="w-64 h-96 bg-gradient-to-br from-blue-900 to-black rounded-xl border border-primary p-2 custom-tilt" data-tilt>
+                                    <img src="Images\rare.jpeg" class="w-full h-full object-cover rounded-lg" alt="Card Example">
+                                </div>
+                            </div>
+                            <div class="swiper-slide flex justify-center items-center">
+                                <div class="w-64 h-96 bg-gradient-to-br from-yellow-900 to-black rounded-xl border border-gold p-2 custom-tilt" data-tilt>
+                                    <img src="Images\Mythic.PNG" class="w-full h-full object-cover rounded-lg" alt="Card Example">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-dark/50 border-y border-white/10 py-12">
+                <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-2xl font-display font-bold uppercase mb-8 tracking-widest text-gray-400">Sports Included</h2>
+                    <div class="flex justify-center flex-wrap gap-12 lg:gap-24">
+                        <div class="text-center group" data-aos="fade-up" data-aos-delay="0">
+                            <i class="fa-regular fa-futbol text-4xl mb-3 text-gray-500 group-hover:text-primary transition-colors"></i>
+                            <p class="font-bold uppercase tracking-wider">Soccer</p>
+                        </div>
+                        <div class="text-center group" data-aos="fade-up" data-aos-delay="100">
+                            <i class="fa-solid fa-baseball text-4xl mb-3 text-gray-500 group-hover:text-primary transition-colors"></i>
+                            <p class="font-bold uppercase tracking-wider">Baseball</p>
+                        </div>
+                        <div class="text-center group" data-aos="fade-up" data-aos-delay="200">
+                            <i class="fa-solid fa-basketball text-4xl mb-3 text-gray-500 group-hover:text-primary transition-colors"></i>
+                            <p class="font-bold uppercase tracking-wider">Basketball</p>
+                        </div>
+                        <div class="text-center group" data-aos="fade-up" data-aos-delay="300">
+                            <i class="fa-solid fa-trophy text-4xl mb-3 text-gray-500 group-hover:text-gold transition-colors"></i>
+                            <p class="font-bold uppercase tracking-wider">More Soon</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="collections" class="page-view hidden py-12">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-display font-black uppercase italic mb-4">Collections</h2>
+                    <p class="text-gray-400">Discover our 3 types of collections: Special, Academies / Clubs, and Fans.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glass p-6 rounded-xl custom-tilt" data-tilt>
+                        <h3 class="text-2xl font-display font-bold text-primary mb-2">Special Collections</h3>
+                        <p class="text-sm text-gray-400 mb-4">Unique cards for unique moments.</p>
+                        <ul class="text-sm space-y-2 mb-4 text-gray-300">
+                            <li><i class="fa-solid fa-snowflake text-secondary w-5"></i> <strong>Seasons:</strong> Summer, Winter, Autumn, Spring</li>
+                            <li><i class="fa-solid fa-moon text-yellow-300 w-5"></i> <strong>Festivities:</strong> Christmas, Full Moon, National Day</li>
+                            <li><i class="fa-solid fa-trophy text-gold w-5"></i> <strong>Major Events:</strong> World Cup, Olympics, WBC</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass p-6 rounded-xl custom-tilt" data-tilt>
+                        <h3 class="text-2xl font-display font-bold text-secondary mb-2">Academies / Clubs</h3>
+                        <p class="text-sm text-gray-400 mb-4">Personalized cards with real stats and ratings.</p>
+                        <ul class="text-sm space-y-2 mb-4 text-gray-300">
+                            <li><i class="fa-solid fa-child text-primary w-5"></i> <strong>Rookie Version (U4-U7):</strong> Colorful, simple stats, ideal for learning.</li>
+                            <li><i class="fa-solid fa-star text-gold w-5"></i> <strong>Academy Pro (U8-U11+):</strong> Complete stats, OVR rating, ideal for competing.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass p-6 rounded-xl border border-gray-600 flex flex-col items-center justify-center text-center">
+                        <h3 class="text-2xl font-display font-bold text-gray-300 mb-2">Fans Collection</h3>
+                        <p class="text-lg font-bold text-gray-500 uppercase">Coming Soon</p>
+                        <p class="text-sm text-gray-400 mt-2">Stay tuned! Something amazing is on the way.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rarity" class="page-view hidden py-12">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-display font-black uppercase italic mb-4">Official Rarity System</h2>
+                    <p class="text-gray-400">Collect your cards, complete your set, and experience the thrill of every rarity.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+                    <div class="glass rounded-xl p-4 flex items-center gap-4 border-l-4 border-gray-400 custom-tilt" data-tilt>
+                        <div class="w-16 h-16 flex-shrink-0 rounded-full bg-gradient-to-br from-gray-300 to-gray-600 flex items-center justify-center font-display font-bold shadow-[0_0_15px_rgba(156,163,175,0.5)]">C</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold uppercase text-gray-300 mb-1">Common <span class="bg-gray-700 text-white text-[10px] px-2 py-1 rounded ml-1">60.0%</span></h3>
+                            <p class="text-sm text-gray-400 leading-tight">The foundation of every great collection.</p>
+                        </div>
+                        <div class="w-16 h-24 sm:w-20 sm:h-28 flex-shrink-0 rotate-3 hover:rotate-0 transition-transform duration-300">
+                            <img src="Images/Common.jpeg" alt="Common Sample" class="w-full h-full object-cover rounded shadow-[0_0_10px_rgba(156,163,175,0.3)] border border-gray-400/50">
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-xl p-4 flex items-center gap-4 border-l-4 border-blue-500 custom-tilt" data-tilt>
+                        <div class="w-16 h-16 flex-shrink-0 rounded-full bg-gradient-to-br from-blue-400 to-blue-700 flex items-center justify-center font-display font-bold shadow-[0_0_15px_rgba(59,130,246,0.5)]">R</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold uppercase text-blue-400 mb-1">Rare <span class="bg-blue-900 text-white text-[10px] px-2 py-1 rounded ml-1">20.0%</span></h3>
+                            <p class="text-sm text-gray-400 leading-tight">For dedicated collectors.</p>
+                        </div>
+                        <div class="w-16 h-24 sm:w-20 sm:h-28 flex-shrink-0 rotate-3 hover:rotate-0 transition-transform duration-300">
+                            <img src="Images/rare.jpeg" alt="Rare Sample" class="w-full h-full object-cover rounded shadow-[0_0_10px_rgba(59,130,246,0.4)] border border-blue-500/50">
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-xl p-4 flex items-center gap-4 border-l-4 border-yellow-500 custom-tilt" data-tilt>
+                        <div class="w-16 h-16 flex-shrink-0 rounded-full bg-gradient-to-br from-yellow-300 to-yellow-600 flex items-center justify-center font-display font-bold text-black shadow-[0_0_15px_rgba(234,179,8,0.5)]">L</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold uppercase text-yellow-500 mb-1">Legendary <span class="bg-yellow-900 text-white text-[10px] px-2 py-1 rounded ml-1">6.0%</span></h3>
+                            <p class="text-sm text-gray-400 leading-tight">Only a few are privileged to own these.</p>
+                        </div>
+                        <div class="w-16 h-24 sm:w-20 sm:h-28 flex-shrink-0 rotate-3 hover:rotate-0 transition-transform duration-300">
+                            <img src="Images\Legendary.jpeg" alt="Legendary Sample" class="w-full h-full object-cover rounded shadow-[0_0_15px_rgba(234,179,8,0.4)] border border-yellow-500/50">
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-xl p-4 flex items-center gap-4 border-l-4 border-purple-500 custom-tilt" data-tilt>
+                        <div class="w-16 h-16 flex-shrink-0 rounded-full bg-gradient-to-br from-purple-400 to-purple-700 flex items-center justify-center font-display font-bold text-white shadow-[0_0_15px_rgba(168,85,247,0.5)]">E</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold uppercase text-purple-400 mb-1">Elite <span class="bg-purple-900 text-white text-[10px] px-2 py-1 rounded ml-1">4.0%</span></h3>
+                            <p class="text-sm text-gray-400 leading-tight">For true collectors.</p>
+                        </div>
+                        <div class="w-16 h-24 sm:w-20 sm:h-28 flex-shrink-0 rotate-3 hover:rotate-0 transition-transform duration-300">
+                            <img src="Images\Elite.jpeg" alt="Elite Sample" class="w-full h-full object-cover rounded shadow-[0_0_15px_rgba(168,85,247,0.4)] border border-purple-500/50">
+                        </div>
+                    </div>
+                    
+                    <div class="glass rounded-xl p-4 flex items-center gap-4 border-l-4 border-diamond custom-tilt" data-tilt>
+                        <div class="w-16 h-16 flex-shrink-0 rounded-full bg-gradient-to-br from-blue-200 to-cyan-400 flex items-center justify-center font-display font-bold text-black shadow-[0_0_20px_rgba(185,242,255,0.8)]">D</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold uppercase text-diamond mb-1">Diamond <span class="bg-cyan-900 text-white text-[10px] px-2 py-1 rounded ml-1">1.0%</span></h3>
+                            <p class="text-sm text-gray-400 leading-tight">Extraordinary and very limited rarity.</p>
+                        </div>
+                        <div class="w-16 h-24 sm:w-20 sm:h-28 flex-shrink-0 rotate-3 hover:rotate-0 transition-transform duration-300">
+                            <img src="Images\Diamond.jpeg" alt="Diamond Sample" class="w-full h-full object-cover rounded shadow-[0_0_20px_rgba(185,242,255,0.5)] border border-cyan-400/70">
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-xl p-4 flex items-center gap-4 border-l-4 border-mythic custom-tilt" data-tilt>
+                        <div class="w-16 h-16 flex-shrink-0 rounded-full bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center font-display font-bold text-white shadow-[0_0_20px_rgba(255,69,0,0.8)]">M</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold uppercase text-mythic mb-1">Mythic <span class="bg-red-900 text-white text-[10px] px-2 py-1 rounded ml-1">0.1%</span></h3>
+                            <p class="text-sm text-gray-400 leading-tight">The supreme rarity. Only one exists.</p>
+                        </div>
+                        <div class="w-16 h-24 sm:w-20 sm:h-28 flex-shrink-0 rotate-3 hover:rotate-0 transition-transform duration-300">
+                            <img src="https://placehold.co/150x210/7f1d1d/ffffff?text=Mythic" alt="Mythic Sample" class="w-full h-full object-cover rounded shadow-[0_0_25px_rgba(255,69,0,0.6)] border border-red-500/80">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="builder" class="page-view hidden py-12">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-display font-black uppercase italic mb-4">Card Builder</h2>
+                    <p class="text-gray-400">Provide your information. The more details, the better your card!</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                    <div class="glass p-8 rounded-2xl">
+                        <form id="card-form" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-bold mb-2 text-gray-300">Full Name</label>
+                                <input type="text" id="b-name" class="w-full bg-dark border border-white/20 rounded px-4 py-2 focus:outline-none focus:border-primary transition-colors" placeholder="e.g. Jimmy Chen">
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-bold mb-2 text-gray-300">Jersey Number</label>
+                                    <input type="number" id="b-num" class="w-full bg-dark border border-white/20 rounded px-4 py-2 focus:outline-none focus:border-primary" placeholder="10">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold mb-2 text-gray-300">Position</label>
+                                    <input type="text" id="b-pos" class="w-full bg-dark border border-white/20 rounded px-4 py-2 focus:outline-none focus:border-primary" placeholder="FW or MF">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2 text-gray-300">Nationality (Country)</label>
+                                <input type="text" class="w-full bg-dark border border-white/20 rounded px-4 py-2 focus:outline-none focus:border-primary" placeholder="e.g. Argentina">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2 text-gray-300">Upload Photo</label>
+                                <div class="border-2 border-dashed border-white/20 rounded-lg p-6 text-center hover:border-primary transition-colors cursor-pointer">
+                                    <i class="fa-solid fa-camera text-3xl mb-2 text-gray-400"></i>
+                                    <p class="text-xs text-gray-400">Good lighting, 100% body & face clearly visible. No hats.</p>
+                                </div>
+                            </div>
+                            <button type="button" class="w-full bg-gradient-to-r from-primary to-secondary py-3 rounded-lg font-bold font-display uppercase hover:shadow-[0_0_15px_rgba(0,102,255,0.5)] transition-all">
+                                Generate Card
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="flex justify-center items-center">
+                        <div class="w-72 h-[420px] bg-gradient-to-br from-blue-900 to-black rounded-xl border-2 border-primary p-3 custom-tilt relative shadow-[0_0_30px_rgba(0,102,255,0.3)]" data-tilt>
+                            <div class="absolute top-4 left-4 z-10 text-center">
+                                <div class="text-3xl font-display font-black text-white" id="prev-num">10</div>
+                                <div class="text-sm font-bold text-gray-300" id="prev-pos">FW</div>
+                            </div>
+                            <img src="Images\Holanda.PNG" class="absolute bottom-12 left-0 w-full h-auto object-contain z-0" alt="Player">
+                            <div class="absolute bottom-4 left-0 w-full text-center z-10">
+                                <h3 class="text-2xl font-display font-black uppercase tracking-wider text-white" id="prev-name">NOEL CHEN</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="shop" class="page-view hidden py-12">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="text-center mb-10">
+                    <h2 class="text-4xl font-display font-black uppercase italic mb-4">Purchase Options</h2>
+                </div>
+
+                <div class="border-2 border-primary/80 rounded-2xl p-6 bg-[#030b14] shadow-[0_0_30px_rgba(0,102,255,0.2)]">
+                    
+                    <div class="flex flex-col lg:flex-row items-center justify-between border-b border-primary/30 py-6 gap-6 hover:bg-white/5 transition-colors rounded-xl px-4">
+                        <div class="flex items-center gap-6 w-full lg:w-1/2">
+                            <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center border border-primary text-white bg-primary/10 rotate-45 rounded shadow-[0_0_15px_rgba(0,102,255,0.4)]">
+                                <i class="fa-solid fa-user -rotate-45 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-display font-bold uppercase text-white mb-1 tracking-wider">Individual Card</h3>
+                                <p class="text-xs text-secondary font-bold uppercase mb-1 tracking-widest">Available Styles:</p>
+                                <p class="text-sm text-gray-300">Classic Premium &bull; Cartoon &bull; Retro</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-end w-full lg:w-auto mt-4 lg:mt-0">
+                            <div class="border-2 border-primary/80 px-8 py-3 rounded bg-[#0a192f]/50 text-center shadow-[inset_0_0_20px_rgba(0,102,255,0.3)] min-w-[220px]">
+                                <div class="text-4xl font-black text-white italic">400 <span class="text-xl not-italic text-gray-300">NT$</span></div>
+                                <div class="text-xs text-secondary font-bold uppercase tracking-widest mt-2 border-t border-primary/50 pt-2">Individual Price</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col lg:flex-row items-center justify-between border-b border-primary/30 py-6 gap-6 hover:bg-white/5 transition-colors rounded-xl px-4">
+                        <div class="flex items-center gap-6 w-full lg:w-1/2">
+                            <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center border border-primary text-white bg-primary/10 rotate-45 rounded shadow-[0_0_15px_rgba(0,102,255,0.4)]">
+                                <i class="fa-solid fa-star -rotate-45 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-display font-bold uppercase text-white mb-1 tracking-wider">Special Premium Cards</h3>
+                                <p class="text-xs text-secondary font-bold uppercase mb-1 tracking-widest">Available Styles:</p>
+                                <p class="text-sm text-gray-300 mb-3">Golden Card &bull; Special Edition</p>
+                                <span class="border border-gold text-gold text-xs font-bold px-3 py-1 rounded bg-gold/10"><i class="fa-solid fa-star mr-1"></i> Made of premium materials</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-end w-full lg:w-auto mt-4 lg:mt-0">
+                            <div class="border-2 border-primary/80 px-8 py-3 rounded bg-[#0a192f]/50 text-center shadow-[inset_0_0_20px_rgba(0,102,255,0.3)] min-w-[220px]">
+                                <div class="text-4xl font-black text-white italic">500 <span class="text-xl not-italic text-gray-300">NT$</span></div>
+                                <div class="text-xs text-secondary font-bold uppercase tracking-widest mt-2 border-t border-primary/50 pt-2">Individual Price</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col lg:flex-row items-center justify-between border-b border-primary/30 py-6 gap-6 hover:bg-white/5 transition-colors rounded-xl px-4">
+                        <div class="flex items-center gap-6 w-full lg:w-1/2">
+                            <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center border border-primary text-white bg-primary/10 rotate-45 rounded shadow-[0_0_15px_rgba(0,102,255,0.4)]">
+                                <i class="fa-solid fa-layer-group -rotate-45 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-display font-bold uppercase text-white mb-1 tracking-wider">Pack of 3 Cards</h3>
+                                <p class="text-xs text-secondary font-bold uppercase mb-1 tracking-widest">Pack Contains:</p>
+                                <p class="text-sm text-gray-300">Classic Premium &bull; Cartoon &bull; Retro</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6 w-full lg:w-auto justify-between lg:justify-end mt-4 lg:mt-0">
+                            <div class="border border-secondary/50 text-center rounded bg-secondary/10 px-4 py-2 flex flex-col justify-center">
+                                <div class="text-2xl font-bold text-white leading-none">3</div>
+                                <div class="text-[10px] text-secondary uppercase tracking-widest mt-1">Cards</div>
+                            </div>
+                            <div class="border-2 border-primary/80 px-8 py-3 rounded bg-[#0a192f]/50 text-center shadow-[inset_0_0_20px_rgba(0,102,255,0.3)] min-w-[220px]">
+                                <div class="text-4xl font-black text-white italic">1,050 <span class="text-xl not-italic text-gray-300">NT$</span></div>
+                                <div class="text-xs text-secondary font-bold uppercase tracking-widest mt-2 border-t border-primary/50 pt-2">Pack Price</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col lg:flex-row items-center justify-between py-6 gap-6 hover:bg-white/5 transition-colors rounded-xl px-4">
+                        <div class="flex items-center gap-6 w-full lg:w-1/2">
+                            <div class="w-14 h-14 flex-shrink-0 flex items-center justify-center border border-primary text-white bg-primary/10 rotate-45 rounded shadow-[0_0_15px_rgba(0,102,255,0.4)]">
+                                <i class="fa-solid fa-layer-group -rotate-45 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-display font-bold uppercase text-white mb-1 tracking-wider">Pack of 5 Cards</h3>
+                                <p class="text-xs text-secondary font-bold uppercase mb-1 tracking-widest">Pack Contains:</p>
+                                <p class="text-sm text-gray-300">
+                                    &bull; Classic Premium &bull; Cartoon &bull; Retro <br>
+                                    &bull; Golden Card &bull; Special Edition
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6 w-full lg:w-auto justify-between lg:justify-end mt-4 lg:mt-0">
+                             <div class="border border-secondary/50 text-center rounded bg-secondary/10 px-4 py-2 flex flex-col justify-center">
+                                <div class="text-2xl font-bold text-white leading-none">5</div>
+                                <div class="text-[10px] text-secondary uppercase tracking-widest mt-1">Cards</div>
+                            </div>
+                            <div class="border-2 border-primary/80 px-8 py-3 rounded bg-[#0a192f]/50 text-center shadow-[inset_0_0_20px_rgba(0,102,255,0.3)] min-w-[220px]">
+                                <div class="text-4xl font-black text-white italic">1,700 <span class="text-xl not-italic text-gray-300">NT$</span></div>
+                                <div class="text-xs text-secondary font-bold uppercase tracking-widest mt-2 border-t border-primary/50 pt-2">Pack Price</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex flex-col md:flex-row items-center justify-center gap-8 px-6 py-4">
+                    <div class="flex items-center gap-4 md:border-r md:border-primary/50 md:pr-8">
+                        <i class="fa-solid fa-truck-fast text-4xl text-gold"></i>
+                        <h3 class="text-3xl font-display font-black text-gold italic uppercase tracking-wider">Free Delivery</h3>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="border border-gray-400/50 p-3 rounded flex items-center justify-center">
+                            <i class="fa-solid fa-file-invoice-dollar text-2xl text-gray-300"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white uppercase leading-tight tracking-wider">All Prices <br> <span class="text-gray-400">Include Taxes.</span></h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="payment" class="page-view hidden py-12">
+            <div class="container mx-auto px-6 max-w-7xl">
+                
+                <div class="text-center mb-10">
+                    <h2 class="text-5xl font-display font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-primary uppercase italic mb-2 tracking-wider">Payment Methods</h2>
+                    <h3 class="text-2xl font-bold bg-gold text-black inline-block px-4 py-1 skew-x-[-10deg] uppercase tracking-widest mb-4">
+                        <span class="skew-x-[10deg] block">Bank Transfer</span>
+                    </h3>
+                    <p class="text-gray-300 font-bold tracking-widest uppercase">Easy &bull; Secure &bull; Fast</p>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-6">
+                    
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="border border-primary/50 rounded-xl p-6 bg-[#0a192f]/60 shadow-[0_0_20px_rgba(0,102,255,0.15)] flex flex-col md:flex-row items-center gap-6">
+                            <div class="w-16 h-16 flex-shrink-0 flex items-center justify-center border-2 border-primary text-primary text-3xl rounded-lg shadow-[0_0_15px_rgba(0,102,255,0.4)]">
+                                <i class="fa-solid fa-shield-check"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl md:text-2xl font-bold italic uppercase tracking-wider mb-2">At <span class="text-primary">EO Cards</span> your payment is <span class="text-gold">100% Protected</span></h3>
+                                <p class="text-gray-300">We use bank transfer to guarantee security, transparency and reliability in every purchase.</p>
+                            </div>
+                            <div class="hidden md:block w-16 h-16 flex-shrink-0 text-primary/50 text-5xl ml-auto">
+                                <i class="fa-solid fa-building-columns"></i>
+                            </div>
+                        </div>
+
+                        <div class="border border-primary/50 rounded-xl p-6 bg-[#030b14] shadow-[0_0_20px_rgba(0,102,255,0.15)]">
+                            <div class="text-center mb-8">
+                                <h3 class="text-2xl font-display font-bold uppercase tracking-widest inline-block border-b-2 border-primary pb-2"><i class="fa-solid fa-star text-gold mr-2"></i> How Does It Work? <i class="fa-solid fa-star text-gold ml-2"></i></h3>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-center">
+                                <div class="flex flex-col items-center relative group">
+                                    <div class="w-8 h-8 bg-dark border border-primary rounded-full flex items-center justify-center text-primary font-bold mb-3 z-10 shadow-[0_0_10px_rgba(0,102,255,0.5)]">1</div>
+                                    <div class="w-16 h-20 border border-primary/40 rounded flex items-center justify-center text-3xl text-gray-300 mb-3 bg-[#0a192f]">
+                                        <i class="fa-solid fa-mobile-screen-button"></i>
+                                    </div>
+                                    <h4 class="text-secondary font-bold text-sm uppercase mb-2">Place Your Order</h4>
+                                    <p class="text-xs text-gray-400 px-2">Choose your cards and contact us through our official channels.</p>
+                                    <i class="fa-solid fa-chevron-right absolute top-12 -right-3 text-primary/50 hidden md:block"></i>
+                                </div>
+                                <div class="flex flex-col items-center relative group">
+                                    <div class="w-8 h-8 bg-dark border border-primary rounded-full flex items-center justify-center text-primary font-bold mb-3 z-10 shadow-[0_0_10px_rgba(0,102,255,0.5)]">2</div>
+                                    <div class="w-16 h-20 border border-primary/40 rounded flex items-center justify-center text-3xl text-gray-300 mb-3 bg-[#0a192f]">
+                                        <i class="fa-solid fa-building-columns"></i>
+                                    </div>
+                                    <h4 class="text-secondary font-bold text-sm uppercase mb-2">Receive Bank Info</h4>
+                                    <p class="text-xs text-gray-400 px-2">We will send you our bank details so you can make your payment.</p>
+                                    <i class="fa-solid fa-chevron-right absolute top-12 -right-3 text-primary/50 hidden md:block"></i>
+                                </div>
+                                <div class="flex flex-col items-center relative group">
+                                    <div class="w-8 h-8 bg-dark border border-primary rounded-full flex items-center justify-center text-primary font-bold mb-3 z-10 shadow-[0_0_10px_rgba(0,102,255,0.5)]">3</div>
+                                    <div class="w-16 h-20 border border-primary/40 rounded flex items-center justify-center text-3xl text-gold mb-3 bg-[#0a192f]">
+                                        <i class="fa-solid fa-money-bill-transfer"></i>
+                                    </div>
+                                    <h4 class="text-secondary font-bold text-sm uppercase mb-2">Make Transfer</h4>
+                                    <p class="text-xs text-gray-400 px-2">From your bank or mobile app. It's fast and secure.</p>
+                                    <i class="fa-solid fa-chevron-right absolute top-12 -right-3 text-primary/50 hidden md:block"></i>
+                                </div>
+                                <div class="flex flex-col items-center relative group">
+                                    <div class="w-8 h-8 bg-dark border border-primary rounded-full flex items-center justify-center text-primary font-bold mb-3 z-10 shadow-[0_0_10px_rgba(0,102,255,0.5)]">4</div>
+                                    <div class="w-16 h-20 border border-primary/40 rounded flex items-center justify-center text-3xl text-gray-300 mb-3 bg-[#0a192f]">
+                                        <i class="fa-solid fa-file-invoice"></i>
+                                    </div>
+                                    <h4 class="text-secondary font-bold text-sm uppercase mb-2">Send Receipt</h4>
+                                    <p class="text-xs text-gray-400 px-2">Send us a screenshot or receipt of your transfer.</p>
+                                    <i class="fa-solid fa-chevron-right absolute top-12 -right-3 text-primary/50 hidden md:block"></i>
+                                </div>
+                                <div class="flex flex-col items-center relative group">
+                                    <div class="w-8 h-8 bg-dark border border-primary rounded-full flex items-center justify-center text-primary font-bold mb-3 z-10 shadow-[0_0_10px_rgba(0,102,255,0.5)]">5</div>
+                                    <div class="w-16 h-20 border border-primary/40 rounded flex items-center justify-center text-3xl text-gray-300 mb-3 bg-[#0a192f]">
+                                        <i class="fa-solid fa-shield-halved"></i>
+                                    </div>
+                                    <h4 class="text-secondary font-bold text-sm uppercase mb-2">Confirmation</h4>
+                                    <p class="text-xs text-gray-400 px-2">We confirm your payment and start creating your card.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-primary/50 rounded-xl p-6 bg-[#0a192f]/40">
+                            <h4 class="text-sm text-secondary font-bold uppercase tracking-widest mb-4">We Accept Transfers From:</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                                <div class="bg-white rounded p-3 flex items-center justify-center text-black font-bold text-sm border-2 border-transparent hover:border-primary transition-colors">
+                                    <i class="fa-solid fa-building-columns text-red-600 mr-2"></i> CTBC Bank
+                                </div>
+                                <div class="bg-white rounded p-3 flex items-center justify-center text-black font-bold text-sm border-2 border-transparent hover:border-primary transition-colors">
+                                    <i class="fa-solid fa-mountain text-teal-600 mr-2"></i> E.SUN Bank
+                                </div>
+                                <div class="bg-white rounded p-3 flex items-center justify-center text-black font-bold text-sm border-2 border-transparent hover:border-primary transition-colors">
+                                    <i class="fa-solid fa-leaf text-green-700 mr-2"></i> Taiwan Cooperative
+                                </div>
+                                <div class="bg-white rounded p-3 flex items-center justify-center text-black font-bold text-sm border-2 border-transparent hover:border-primary transition-colors">
+                                    <i class="fa-solid fa-t text-red-500 mr-2"></i> Taishin Bank
+                                </div>
+                                <div class="bg-white rounded p-3 flex items-center justify-center text-black font-bold text-sm border-2 border-transparent hover:border-primary transition-colors">
+                                    <i class="fa-solid fa-tree text-green-600 mr-2"></i> Cathay United
+                                </div>
+                                <div class="rounded p-3 flex items-center justify-center text-gray-400 italic text-xs text-center">
+                                    (Check availability in your bank)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="border border-primary/50 rounded-xl p-6 bg-[#030b14] shadow-[0_0_20px_rgba(0,102,255,0.15)] h-full">
+                            <h3 class="text-xl font-display font-bold uppercase italic mb-6">Why Choose <br><span class="text-gold">Bank Transfer?</span></h3>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="text-2xl text-secondary mt-1"><i class="fa-solid fa-lock"></i></div>
+                                    <div>
+                                        <h4 class="text-primary font-bold text-sm uppercase tracking-wider">Maximum Security</h4>
+                                        <p class="text-xs text-gray-400 mt-1">Your payments are protected.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="text-2xl text-secondary mt-1"><i class="fa-solid fa-stopwatch"></i></div>
+                                    <div>
+                                        <h4 class="text-primary font-bold text-sm uppercase tracking-wider">Fast and Efficient</h4>
+                                        <p class="text-xs text-gray-400 mt-1">Your payment is reflected in minutes.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="text-2xl text-secondary mt-1"><i class="fa-solid fa-scale-balanced"></i></div>
+                                    <div>
+                                        <h4 class="text-primary font-bold text-sm uppercase tracking-wider">Reliable and Transparent</h4>
+                                        <p class="text-xs text-gray-400 mt-1">Clear process and no hidden fees.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="text-2xl text-secondary mt-1"><i class="fa-solid fa-headset"></i></div>
+                                    <div>
+                                        <h4 class="text-primary font-bold text-sm uppercase tracking-wider">Personalized Support</h4>
+                                        <p class="text-xs text-gray-400 mt-1">We accompany you throughout the entire process.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 border-t border-white/10 pt-6">
+                                <h4 class="text-sm text-white font-bold uppercase tracking-widest mb-4">Contact Us:</h4>
+                                <div class="bg-white p-4 rounded-lg inline-block shadow-[0_0_20px_rgba(255,255,255,0.2)] relative custom-tilt" data-tilt>
+                                    <div class="grid grid-cols-3 gap-1 text-black text-3xl opacity-80">
+                                        <i class="fa-solid fa-qrcode"></i><i class="fa-solid fa-barcode"></i><i class="fa-solid fa-qrcode"></i>
+                                        <i class="fa-solid fa-barcode"></i>
+                                        <div class="bg-[#00B900] rounded text-white flex items-center justify-center text-xl">
+                                            <i class="fa-brands fa-line"></i>
+                                        </div>
+                                        <i class="fa-solid fa-barcode"></i>
+                                        <i class="fa-solid fa-qrcode"></i><i class="fa-solid fa-barcode"></i><i class="fa-solid fa-qrcode"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 border border-primary/30 rounded-xl p-4 bg-[#0a192f]/40 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+                    <div class="flex items-center gap-4">
+                        <i class="fa-solid fa-lock text-3xl text-secondary"></i>
+                        <div>
+                            <h4 class="text-secondary font-bold text-sm uppercase">Your Security is Our Priority</h4>
+                            <p class="text-xs text-gray-400">At EO Cards we take care of every detail so your experience is always safe.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-4">
+                        <i class="fa-solid fa-shield-halved text-3xl text-primary"></i>
+                        <div>
+                            <h4 class="text-primary font-bold text-sm uppercase">Your Security is Our Priority</h4>
+                            <p class="text-xs text-gray-400">At EO Cards we take care of every detail so your experience is always safe and reliable.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center border-t border-primary/50 pt-6">
+                    <h3 class="text-lg md:text-xl font-display font-bold uppercase italic tracking-widest text-gray-300">
+                        <i class="fa-solid fa-star text-gold mr-2"></i> Pay with <span class="text-secondary">Confidence</span>. Collect with <span class="text-gold">Emotion</span>. <i class="fa-solid fa-star text-gold ml-2"></i>
+                    </h3>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="faq" class="page-view hidden py-12">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-display font-black uppercase italic mb-4">Frequently Asked Questions</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="glass rounded-lg">
+                        <button class="w-full px-6 py-4 text-left font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                            How does EO Cards work?
+                            <i class="fa-solid fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="px-6 pb-4 hidden text-gray-400 text-sm">
+                            Choose your favorite sport, select a rarity and design, upload your photo (100% body visible), and provide your details. We will print and ship a premium physical card straight to you!
+                        </div>
+                    </div>
+                    <div class="glass rounded-lg">
+                        <button class="w-full px-6 py-4 text-left font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                            What sports are available?
+                        <i class="fa-solid fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="px-6 pb-4 hidden text-gray-400 text-sm">
+                            We currently feature Football (Soccer), Baseball, and Basketball designs. More sports options are arriving soon!
+                        </div>
+                    </div>
+                    <div class="glass rounded-lg">
+                        <button class="w-full px-6 py-4 text-left font-bold flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                            How long does delivery take?
+                            <i class="fa-solid fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="px-6 pb-4 hidden text-gray-400 text-sm">
+                            Once your order is confirmed, the estimated delivery time is 10 to 15 business days. Delivery is FREE through FamilyMart or 7-Eleven.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="page-view hidden py-12">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-4xl font-display font-black uppercase italic mb-4">Contact Us</h2>
+                    <p class="text-gray-400">Join the community. Collect. Compete. Make History.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                    <div class="glass p-8 rounded-2xl">
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-bold mb-1">Name</label>
+                                <input type="text" class="w-full bg-dark border border-white/20 rounded px-4 py-2 focus:border-primary outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-1">Email</label>
+                                <input type="email" class="w-full bg-dark border border-white/20 rounded px-4 py-2 focus:border-primary outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-1">Message</label>
+                                <textarea rows="4" class="w-full bg-dark border border-white/20 rounded px-4 py-2 focus:border-primary outline-none"></textarea>
+                            </div>
+                            <button type="button" class="w-full bg-primary py-2 rounded font-bold hover:bg-blue-600 transition-colors">Send Message</button>
+                        </form>
+                    </div>
+
+                    <div class="flex flex-col justify-center space-y-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full glass flex items-center justify-center text-2xl text-[#E1306C]">
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Instagram</h4>
+                                <p class="text-sm text-gray-400">@eocards_official</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full glass flex items-center justify-center text-2xl text-[#25D366]">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">WhatsApp</h4>
+                                <p class="text-sm text-gray-400">Message us directly</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full glass flex items-center justify-center text-2xl text-[#00B900]">
+                                <i class="fa-brands fa-line"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">LINE</h4>
+                                <p class="text-sm text-gray-400">@eomase18</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-black py-8 border-t border-white/10 mt-auto">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-2xl font-display font-black italic mb-4 text-gray-600">EO<span class="text-primary">CARDS</span></h2>
+            <p class="text-sm text-gray-500 mb-4">More than cards, we create memories, motivate dreams, and build legends.</p>
+            <p class="text-xs text-gray-600">&copy; 2026 EO Cards. All rights reserved. Taxes and delivery included.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Shatter Grid for the Logo
+            const container = document.getElementById('shatter-container');
+            const rows = 8;
+            const cols = 8;
+            const width = 192;
+            const height = 192;
+            const pieceW = width / cols;
+            const pieceH = height / rows;
+
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    const piece = document.createElement('div');
+                    piece.classList.add('shatter-piece');
+                    piece.style.width = pieceW + 'px';
+                    piece.style.height = pieceH + 'px';
+                    piece.style.left = (c * pieceW) + 'px';
+                    piece.style.top = (r * pieceH) + 'px';
+                    piece.style.backgroundPosition = `-${c * pieceW}px -${r * pieceH}px`;
+                    container.appendChild(piece);
+                }
+            }
+
+            // Shatter Animation Trigger
+            setTimeout(() => {
+                gsap.to('#shatter-container', { border: 'none', boxShadow: 'none', duration: 0.1 });
+                gsap.to('#loading-text', { opacity: 0, duration: 0.3 });
+
+                gsap.to('.shatter-piece', {
+                    duration: 1.2,
+                    x: () => (Math.random() - 0.5) * 600,
+                    y: () => (Math.random() - 0.5) * 600,
+                    z: () => (Math.random() - 0.5) * 600,
+                    rotationX: () => Math.random() * 720 - 360,
+                    rotationY: () => Math.random() * 720 - 360,
+                    rotationZ: () => Math.random() * 720 - 360,
+                    opacity: 0,
+                    ease: "power4.out",
+                    onComplete: () => {
+                        document.getElementById("loader").classList.add("loader-hidden");
+                        initAnimations(); 
+                    }
+                });
+            }, 1500);
+
+            AOS.init({ duration: 800, once: true });
+            
+            new Swiper(".heroSwiper", {
+                effect: "cards",
+                grabCursor: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                loop: true
+            });
+
+            document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+                const menu = document.querySelector('.hidden.md\\:flex');
+                menu.classList.toggle('hidden');
+                menu.classList.toggle('flex');
+                menu.classList.toggle('flex-col');
+                menu.classList.toggle('absolute');
+                menu.classList.toggle('top-16');
+                menu.classList.toggle('left-0');
+                menu.classList.toggle('w-full');
+                menu.classList.toggle('bg-dark');
+                menu.classList.toggle('p-6');
+                menu.classList.toggle('border-b');
+                menu.classList.toggle('border-white/10');
+            });
+
+            bindBuilderPreview();
+        });
+
+        function navigate(pageId) {
+            document.querySelectorAll('.page-view').forEach(page => {
+                page.classList.add('hidden');
+                page.classList.remove('block');
+            });
+            
+            const target = document.getElementById(pageId);
+            if(target) {
+                target.classList.remove('hidden');
+                target.classList.add('block');
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                AOS.refresh();
+                
+                document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                const activeLink = document.querySelector(`.nav-link[onclick="navigate('${pageId}')"]`);
+                if(activeLink) activeLink.classList.add('active');
+                
+                if(pageId === 'home') initAnimations();
+            }
+        }
+
+        function initAnimations() {
+            gsap.from(".hero-content h1", { y: 50, opacity: 0, duration: 1, ease: "power3.out" });
+            gsap.from(".hero-content p", { y: 30, opacity: 0, duration: 1, delay: 0.3, ease: "power3.out" });
+            gsap.from(".hero-content button", { y: 20, opacity: 0, duration: 1, delay: 0.5, stagger: 0.2, ease: "power3.out" });
+        }
+
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            document.querySelectorAll('#faq .glass div:not(.hidden)').forEach(el => {
+                if(el !== content) {
+                    el.classList.add('hidden');
+                    el.previousElementSibling.querySelector('i').style.transform = 'rotate(0deg)';
+                }
+            });
+
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+
+        function bindBuilderPreview() {
+            const nameInput = document.getElementById('b-name');
+            const numInput = document.getElementById('b-num');
+            const posInput = document.getElementById('b-pos');
+
+            const prevName = document.getElementById('prev-name');
+            const prevNum = document.getElementById('prev-num');
+            const prevPos = document.getElementById('prev-pos');
+
+            if(nameInput) {
+                nameInput.addEventListener('input', (e) => {
+                    prevName.innerText = e.target.value.toUpperCase() || 'JIMMY CHEN';
+                });
+            }
+            if(numInput) {
+                numInput.addEventListener('input', (e) => {
+                    prevNum.innerText = e.target.value || '10';
+                });
+            }
+            if(posInput) {
+                posInput.addEventListener('input', (e) => {
+                    prevPos.innerText = e.target.value.toUpperCase() || 'FW';
+                });
+            }
+        }
+    </script>
+</body>
+</html>
