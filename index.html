@@ -138,11 +138,9 @@
                     <a href="#" onclick="navigate('rarity')" class="nav-link hover:text-secondary transition-colors">RARITIES</a>
                     <a href="#" onclick="navigate('shop')" class="nav-link hover:text-secondary transition-colors">SHOP</a>
                     <a href="#" onclick="navigate('payment')" class="nav-link hover:text-secondary transition-colors text-secondary">PAYMENT</a>
+                    <a href="#" onclick="navigate('requirements')" class="nav-link hover:text-secondary transition-colors">REQUIREMENTS</a>
                     <a href="#" onclick="navigate('faq')" class="nav-link hover:text-secondary transition-colors">FAQ</a>
                     <a href="#" onclick="navigate('contact')" class="nav-link hover:text-secondary transition-colors">CONTACT</a>
-                    <button onclick="navigate('builder')" class="btn-glow bg-gradient-to-r from-primary to-secondary px-4 lg:px-6 py-2 rounded-lg font-display uppercase whitespace-nowrap">
-                        Build Card
-                    </button>
                 </div>
 
                 <button class="md:hidden text-2xl focus:outline-none" id="mobile-menu-btn">
@@ -170,9 +168,7 @@
                             <button onclick="navigate('collections')" class="w-full sm:w-auto bg-primary hover:bg-blue-600 px-6 py-3 rounded-lg font-bold font-display uppercase transition-all shadow-[0_0_15px_rgba(0,102,255,0.5)]">
                                 Explore Collections
                             </button>
-                            <button onclick="navigate('builder')" class="w-full sm:w-auto glass hover:bg-white/10 px-6 py-3 rounded-lg font-bold font-display uppercase transition-all border border-white/20">
-                                Create My Card
-                            </button>
+    
                         </div>
                     </div>
                     
@@ -352,76 +348,26 @@
                 </div>
             </div>
         </section>
-
-        <section id="builder" class="page-view hidden py-8 md:py-12">
-            <div class="container mx-auto px-4 md:px-6">
-                <div class="text-center mb-8 md:mb-12">
-                    <h2 class="text-3xl md:text-4xl font-display font-black uppercase italic mb-2">Card Builder</h2>
-                    <p class="text-sm md:text-base text-gray-400">Provide your information. The more details, the better your card!</p>
-                </div>
-
-                <div class="grid lg:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
-                    <div class="glass p-5 md:p-8 rounded-2xl">
-                        <form id="card-form" class="space-y-4 md:space-y-6">
-                            <div>
-                                <label class="block text-xs md:text-sm font-bold mb-1 md:mb-2 text-gray-300">Full Name</label>
-                                <input type="text" id="b-name" class="w-full bg-dark border border-white/20 rounded px-3 md:px-4 py-2 focus:outline-none focus:border-primary transition-colors text-sm" placeholder="e.g. Jimmy Chen">
-                            </div>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-xs md:text-sm font-bold mb-1 md:mb-2 text-gray-300">Jersey Number</label>
-                                    <input type="number" id="b-num" class="w-full bg-dark border border-white/20 rounded px-3 md:px-4 py-2 focus:outline-none focus:border-primary text-sm" placeholder="10">
-                                </div>
-                                <div>
-                                    <label class="block text-xs md:text-sm font-bold mb-1 md:mb-2 text-gray-300">Position</label>
-                                    <input type="text" id="b-pos" class="w-full bg-dark border border-white/20 rounded px-3 md:px-4 py-2 focus:outline-none focus:border-primary text-sm" placeholder="FW or MF">
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-xs md:text-sm font-bold mb-1 md:mb-2 text-gray-300">Nationality (Country)</label>
-                                <input type="text" class="w-full bg-dark border border-white/20 rounded px-3 md:px-4 py-2 focus:outline-none focus:border-primary text-sm" placeholder="e.g. Argentina">
-                            </div>
-                            <div>
-                                <label class="block text-xs md:text-sm font-bold mb-1 md:mb-2 text-gray-300">Upload Photo</label>
-                                <div class="border-2 border-dashed border-white/20 rounded-lg p-4 md:p-6 text-center hover:border-primary transition-colors cursor-pointer">
-                                    <i class="fa-solid fa-camera text-2xl md:text-3xl mb-2 text-gray-400"></i>
-                                    <p class="text-[10px] md:text-xs text-gray-400">Good lighting, 100% body & face clearly visible. No hats.</p>
-                                </div>
-                            </div>
-                            <button type="button" class="w-full bg-gradient-to-r from-primary to-secondary py-3 rounded-lg font-bold font-display uppercase hover:shadow-[0_0_15px_rgba(0,102,255,0.5)] transition-all mt-2">
-                                Generate Card
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="flex justify-center items-center mt-6 lg:mt-0">
-                        <div class="w-64 md:w-72 h-[380px] md:h-[420px] bg-gradient-to-br from-blue-900 to-black rounded-xl border-2 border-primary p-3 custom-tilt relative shadow-[0_0_30px_rgba(0,102,255,0.3)]" data-tilt>
-                            <div class="absolute top-4 left-4 z-10 text-center">
-                                <div class="text-2xl md:text-3xl font-display font-black text-white" id="prev-num">10</div>
-                                <div class="text-xs md:text-sm font-bold text-gray-300" id="prev-pos">FW</div>
-                            </div>
-                            <img src="Images\Holanda.PNG" class="absolute bottom-12 left-0 w-full h-auto object-contain z-0" alt="Player">
-                            <div class="absolute bottom-4 left-0 w-full text-center z-10">
-                                <h3 class="text-xl md:text-2xl font-display font-black uppercase tracking-wider text-white" id="prev-name">JIMMY CHEN</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <!-- ================= SHOP & PRICING PAGE ================= -->
         <section id="shop" class="page-view hidden py-8 md:py-12">
             <div class="container mx-auto px-4 md:px-6 max-w-6xl">
                 <div class="text-center mb-8 md:mb-10">
                     <h2 class="text-3xl md:text-4xl font-display font-black uppercase italic mb-2">Purchase Options</h2>
                 </div>
 
+                <!-- Main Pricing Container -->
                 <div class="border-2 border-primary/80 rounded-2xl p-4 md:p-6 bg-[#030b14] shadow-[0_0_30px_rgba(0,102,255,0.2)]">
                     
-                    <div class="flex flex-col lg:flex-row items-center justify-between border-b border-primary/30 py-6 gap-4 md:gap-6 hover:bg-white/5 transition-colors rounded-xl px-2 md:px-4">
-                        <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 md:gap-6 w-full lg:w-1/2">
-                            <div class="w-12 h-12 md:w-14 md:h-14 flex-shrink-0 flex items-center justify-center border border-primary text-white bg-primary/10 rotate-45 rounded shadow-[0_0_15px_rgba(0,102,255,0.4)]">
-                                <i class="fa-solid fa-user -rotate-45 text-xl md:text-2xl"></i>
+                    <!-- Option 1: Individual Card -->
+                    <div class="flex flex-col lg:flex-row items-center justify-between border-b border-primary/30 py-6 gap-6 hover:bg-white/5 transition-colors rounded-xl px-2 md:px-4">
+                        <!-- Left: Text -->
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 w-full lg:w-1/4">
+                            <!-- CSS Hexagon Icon -->
+                            <div class="w-14 h-14 md:w-16 md:h-16 flex-shrink-0 relative drop-shadow-[0_0_10px_rgba(0,102,255,0.5)]">
+                                <div class="absolute inset-0 bg-primary" style="clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);"></div>
+                                <div class="absolute inset-[2px] bg-[#030b14] flex items-center justify-center" style="clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);">
+                                    <i class="fa-solid fa-user text-xl md:text-2xl text-white"></i>
+                                </div>
                             </div>
                             <div>
                                 <h3 class="text-xl md:text-2xl font-display font-bold uppercase text-white mb-1 tracking-wider mt-2 sm:mt-0">Individual Card</h3>
@@ -429,38 +375,82 @@
                                 <p class="text-xs md:text-sm text-gray-300">Classic Premium &bull; Cartoon &bull; Retro</p>
                             </div>
                         </div>
-                        <div class="flex flex-col items-center sm:items-end w-full lg:w-auto mt-2 lg:mt-0">
-                            <div class="w-full sm:w-auto border-2 border-primary/80 px-6 md:px-8 py-3 rounded bg-[#0a192f]/50 text-center shadow-[inset_0_0_20px_rgba(0,102,255,0.3)] min-w-full sm:min-w-[220px]">
-                                <div class="text-3xl md:text-4xl font-black text-white italic">400 <span class="text-lg md:text-xl not-italic text-gray-300">NT$</span></div>
+                        
+                        <!-- Middle: Card Images -->
+                        <div class="flex flex-row flex-wrap justify-center gap-3 md:gap-6 w-full lg:w-1/2">
+                            <div class="flex flex-col items-center">
+                                <img src="https://placehold.co/150x210/1e3a8a/ffffff?text=Classic" alt="Classic Premium" class="w-16 md:w-20 lg:w-24 rounded border-2 border-blue-600 object-cover shadow-[0_0_10px_rgba(37,99,235,0.4)]">
+                                <span class="mt-2 bg-blue-600 text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Classic Premium</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <img src="https://placehold.co/150x210/166534/ffffff?text=Cartoon" alt="Cartoon" class="w-16 md:w-20 lg:w-24 rounded border-2 border-green-600 object-cover shadow-[0_0_10px_rgba(22,163,74,0.4)]">
+                                <span class="mt-2 bg-green-600 text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Cartoon</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <img src="https://placehold.co/150x210/991b1b/ffffff?text=Retro" alt="Retro" class="w-16 md:w-20 lg:w-24 rounded border-2 border-red-700 object-cover shadow-[0_0_10px_rgba(220,38,38,0.4)]">
+                                <span class="mt-2 bg-red-700 text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Retro</span>
+                            </div>
+                        </div>
+
+                        <!-- Right: Price -->
+                        <div class="flex flex-col items-center sm:items-end w-full lg:w-1/4">
+                            <div class="w-full sm:w-auto border-2 border-primary/80 px-6 py-3 rounded bg-[#0a192f]/50 text-center shadow-[inset_0_0_20px_rgba(0,102,255,0.3)]">
+                                <div class="text-3xl md:text-4xl font-black text-white italic">300 <span class="text-lg md:text-xl not-italic text-gray-300">NT$</span></div>
                                 <div class="text-[10px] md:text-xs text-secondary font-bold uppercase tracking-widest mt-2 border-t border-primary/50 pt-2">Individual Price</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex flex-col lg:flex-row items-center justify-between border-b border-primary/30 py-6 gap-4 md:gap-6 hover:bg-white/5 transition-colors rounded-xl px-2 md:px-4">
-                        <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 md:gap-6 w-full lg:w-1/2">
-                            <div class="w-12 h-12 md:w-14 md:h-14 flex-shrink-0 flex items-center justify-center border border-primary text-white bg-primary/10 rotate-45 rounded shadow-[0_0_15px_rgba(0,102,255,0.4)]">
-                                <i class="fa-solid fa-star -rotate-45 text-xl md:text-2xl"></i>
+                    <!-- Option 2: Special Premium -->
+                    <div class="flex flex-col lg:flex-row items-center justify-between border-b border-primary/30 py-6 gap-6 hover:bg-white/5 transition-colors rounded-xl px-2 md:px-4">
+                        <!-- Left: Text -->
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 w-full lg:w-1/4">
+                            <!-- CSS Hexagon Icon -->
+                            <div class="w-14 h-14 md:w-16 md:h-16 flex-shrink-0 relative drop-shadow-[0_0_10px_rgba(0,102,255,0.5)]">
+                                <div class="absolute inset-0 bg-primary" style="clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);"></div>
+                                <div class="absolute inset-[2px] bg-[#030b14] flex items-center justify-center" style="clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);">
+                                    <i class="fa-solid fa-star text-xl md:text-2xl text-white"></i>
+                                </div>
                             </div>
                             <div>
                                 <h3 class="text-xl md:text-2xl font-display font-bold uppercase text-white mb-1 tracking-wider mt-2 sm:mt-0">Special Premium</h3>
                                 <p class="text-[10px] md:text-xs text-secondary font-bold uppercase mb-1 tracking-widest">Available Styles:</p>
-                                <p class="text-xs md:text-sm text-gray-300 mb-2 md:mb-3">Golden Card &bull; Special Edition</p>
-                                <span class="inline-block border border-gold text-gold text-[10px] md:text-xs font-bold px-2 md:px-3 py-1 rounded bg-gold/10 whitespace-nowrap"><i class="fa-solid fa-star mr-1"></i> Premium materials</span>
+                                <p class="text-xs md:text-sm text-gray-300 mb-2 md:mb-3">Golden Card &bull; Special Ed.</p>
+                                <span class="inline-block border border-gold text-gold text-[9px] md:text-[10px] font-bold px-2 py-1 rounded bg-gold/10 whitespace-nowrap"><i class="fa-solid fa-star mr-1"></i> Premium materials</span>
                             </div>
                         </div>
-                        <div class="flex flex-col items-center sm:items-end w-full lg:w-auto mt-2 lg:mt-0">
-                            <div class="w-full sm:w-auto border-2 border-primary/80 px-6 md:px-8 py-3 rounded bg-[#0a192f]/50 text-center shadow-[inset_0_0_20px_rgba(0,102,255,0.3)] min-w-full sm:min-w-[220px]">
-                                <div class="text-3xl md:text-4xl font-black text-white italic">500 <span class="text-lg md:text-xl not-italic text-gray-300">NT$</span></div>
+
+                        <!-- Middle: Card Images -->
+                        <div class="flex flex-row flex-wrap justify-center gap-6 md:gap-10 w-full lg:w-1/2">
+                            <div class="flex flex-col items-center">
+                                <img src="https://placehold.co/150x210/854d0e/ffffff?text=Golden" alt="Golden Card" class="w-16 md:w-20 lg:w-24 rounded border-2 border-yellow-600 object-cover shadow-[0_0_10px_rgba(202,138,4,0.4)]">
+                                <span class="mt-2 bg-yellow-600 text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Golden Card</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <img src="https://placehold.co/150x210/4c1d95/ffffff?text=Special" alt="Special Edition" class="w-16 md:w-20 lg:w-24 rounded border-2 border-purple-600 object-cover shadow-[0_0_10px_rgba(147,51,234,0.4)]">
+                                <span class="mt-2 bg-purple-600 text-white text-[8px] md:text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Special Edition</span>
+                            </div>
+                        </div>
+
+                        <!-- Right: Price -->
+                        <div class="flex flex-col items-center sm:items-end w-full lg:w-1/4">
+                            <div class="w-full sm:w-auto border-2 border-primary/80 px-6 py-3 rounded bg-[#0a192f]/50 text-center shadow-[inset_0_0_20px_rgba(0,102,255,0.3)]">
+                                <div class="text-3xl md:text-4xl font-black text-white italic">350 <span class="text-lg md:text-xl not-italic text-gray-300">NT$</span></div>
                                 <div class="text-[10px] md:text-xs text-secondary font-bold uppercase tracking-widest mt-2 border-t border-primary/50 pt-2">Individual Price</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex flex-col lg:flex-row items-center justify-between border-b border-primary/30 py-6 gap-4 md:gap-6 hover:bg-white/5 transition-colors rounded-xl px-2 md:px-4">
-                        <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 md:gap-6 w-full lg:w-1/2">
-                            <div class="w-12 h-12 md:w-14 md:h-14 flex-shrink-0 flex items-center justify-center border border-primary text-white bg-primary/10 rotate-45 rounded shadow-[0_0_15px_rgba(0,102,255,0.4)]">
-                                <i class="fa-solid fa-layer-group -rotate-45 text-xl md:text-2xl"></i>
+                    <!-- Option 3: Pack of 3 -->
+                    <div class="flex flex-col lg:flex-row items-center justify-between border-b border-primary/30 py-6 gap-6 hover:bg-white/5 transition-colors rounded-xl px-2 md:px-4">
+                        <!-- Left: Text -->
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 w-full lg:w-1/4">
+                            <!-- CSS Hexagon Icon -->
+                            <div class="w-14 h-14 md:w-16 md:h-16 flex-shrink-0 relative drop-shadow-[0_0_10px_rgba(0,102,255,0.5)]">
+                                <div class="absolute inset-0 bg-primary" style="clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);"></div>
+                                <div class="absolute inset-[2px] bg-[#030b14] flex items-center justify-center" style="clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);">
+                                    <i class="fa-solid fa-clone text-xl md:text-2xl text-white"></i>
+                                </div>
                             </div>
                             <div>
                                 <h3 class="text-xl md:text-2xl font-display font-bold uppercase text-white mb-1 tracking-wider mt-2 sm:mt-0">Pack of 3 Cards</h3>
@@ -468,45 +458,69 @@
                                 <p class="text-xs md:text-sm text-gray-300">Classic Premium &bull; Cartoon &bull; Retro</p>
                             </div>
                         </div>
-                        <div class="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto justify-center lg:justify-end mt-4 lg:mt-0">
+
+                        <!-- Middle: Card Images -->
+                        <div class="flex flex-row justify-center gap-2 md:gap-4 w-full lg:w-1/2">
+                            <img src="https://placehold.co/150x210/1e3a8a/ffffff?text=Classic" alt="Classic" class="w-16 md:w-20 lg:w-24 rounded border border-blue-600 object-cover">
+                            <img src="https://placehold.co/150x210/166534/ffffff?text=Cartoon" alt="Cartoon" class="w-16 md:w-20 lg:w-24 rounded border border-green-600 object-cover">
+                            <img src="https://placehold.co/150x210/991b1b/ffffff?text=Retro" alt="Retro" class="w-16 md:w-20 lg:w-24 rounded border border-red-700 object-cover">
+                        </div>
+
+                        <!-- Right: Badges & Price -->
+                        <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-center justify-center lg:justify-end gap-4 w-full lg:w-1/4">
                             <div class="border border-secondary/50 text-center rounded bg-secondary/10 px-4 py-2 flex flex-col justify-center">
                                 <div class="text-xl md:text-2xl font-bold text-white leading-none">3</div>
                                 <div class="text-[9px] md:text-[10px] text-secondary uppercase tracking-widest mt-1">Cards</div>
                             </div>
-                            <div class="w-full sm:w-auto border-2 border-primary/80 px-6 md:px-8 py-3 rounded bg-[#0a192f]/50 text-center shadow-[inset_0_0_20px_rgba(0,102,255,0.3)] min-w-full sm:min-w-[220px]">
-                                <div class="text-3xl md:text-4xl font-black text-white italic">1,050 <span class="text-lg md:text-xl not-italic text-gray-300">NT$</span></div>
+                            <div class="w-full sm:w-auto border-2 border-primary/80 px-6 py-3 rounded bg-[#0a192f]/50 text-center shadow-[inset_0_0_20px_rgba(0,102,255,0.3)]">
+                                <div class="text-3xl md:text-4xl font-black text-white italic">800 <span class="text-lg md:text-xl not-italic text-gray-300">NT$</span></div>
                                 <div class="text-[10px] md:text-xs text-secondary font-bold uppercase tracking-widest mt-2 border-t border-primary/50 pt-2">Pack Price</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex flex-col lg:flex-row items-center justify-between py-6 gap-4 md:gap-6 hover:bg-white/5 transition-colors rounded-xl px-2 md:px-4">
-                        <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 md:gap-6 w-full lg:w-1/2">
-                            <div class="w-12 h-12 md:w-14 md:h-14 flex-shrink-0 flex items-center justify-center border border-primary text-white bg-primary/10 rotate-45 rounded shadow-[0_0_15px_rgba(0,102,255,0.4)]">
-                                <i class="fa-solid fa-layer-group -rotate-45 text-xl md:text-2xl"></i>
+                    <!-- Option 4: Pack of 5 -->
+                    <div class="flex flex-col lg:flex-row items-center justify-between py-6 gap-6 hover:bg-white/5 transition-colors rounded-xl px-2 md:px-4">
+                        <!-- Left: Text -->
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 w-full lg:w-1/4">
+                            <!-- CSS Hexagon Icon -->
+                            <div class="w-14 h-14 md:w-16 md:h-16 flex-shrink-0 relative drop-shadow-[0_0_10px_rgba(0,102,255,0.5)]">
+                                <div class="absolute inset-0 bg-primary" style="clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);"></div>
+                                <div class="absolute inset-[2px] bg-[#030b14] flex items-center justify-center" style="clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);">
+                                    <i class="fa-solid fa-layer-group text-xl md:text-2xl text-white"></i>
+                                </div>
                             </div>
                             <div>
                                 <h3 class="text-xl md:text-2xl font-display font-bold uppercase text-white mb-1 tracking-wider mt-2 sm:mt-0">Pack of 5 Cards</h3>
                                 <p class="text-[10px] md:text-xs text-secondary font-bold uppercase mb-1 tracking-widest">Pack Contains:</p>
-                                <p class="text-xs md:text-sm text-gray-300 leading-tight">
-                                    &bull; Classic Premium &bull; Cartoon &bull; Retro <br>
-                                    &bull; Golden Card &bull; Special Edition
-                                </p>
+                                <p class="text-xs md:text-sm text-gray-300 leading-tight">All Styles included</p>
                             </div>
                         </div>
-                        <div class="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto justify-center lg:justify-end mt-4 lg:mt-0">
-                             <div class="border border-secondary/50 text-center rounded bg-secondary/10 px-4 py-2 flex flex-col justify-center">
+
+                        <!-- Middle: Card Images (Smaller to fit 5) -->
+                        <div class="flex flex-row flex-wrap justify-center gap-1 sm:gap-2 md:gap-3 w-full lg:w-1/2">
+                            <img src="https://placehold.co/150x210/1e3a8a/ffffff?text=1" alt="Classic" class="w-12 sm:w-14 md:w-16 lg:w-16 rounded border border-blue-600 object-cover">
+                            <img src="https://placehold.co/150x210/166534/ffffff?text=2" alt="Cartoon" class="w-12 sm:w-14 md:w-16 lg:w-16 rounded border border-green-600 object-cover">
+                            <img src="https://placehold.co/150x210/991b1b/ffffff?text=3" alt="Retro" class="w-12 sm:w-14 md:w-16 lg:w-16 rounded border border-red-700 object-cover">
+                            <img src="https://placehold.co/150x210/854d0e/ffffff?text=4" alt="Golden" class="w-12 sm:w-14 md:w-16 lg:w-16 rounded border border-yellow-600 object-cover">
+                            <img src="https://placehold.co/150x210/4c1d95/ffffff?text=5" alt="Special" class="w-12 sm:w-14 md:w-16 lg:w-16 rounded border border-purple-600 object-cover">
+                        </div>
+
+                        <!-- Right: Badges & Price -->
+                        <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-center justify-center lg:justify-end gap-4 w-full lg:w-1/4">
+                            <div class="border border-secondary/50 text-center rounded bg-secondary/10 px-4 py-2 flex flex-col justify-center">
                                 <div class="text-xl md:text-2xl font-bold text-white leading-none">5</div>
                                 <div class="text-[9px] md:text-[10px] text-secondary uppercase tracking-widest mt-1">Cards</div>
                             </div>
-                            <div class="w-full sm:w-auto border-2 border-primary/80 px-6 md:px-8 py-3 rounded bg-[#0a192f]/50 text-center shadow-[inset_0_0_20px_rgba(0,102,255,0.3)] min-w-full sm:min-w-[220px]">
-                                <div class="text-3xl md:text-4xl font-black text-white italic">1,700 <span class="text-lg md:text-xl not-italic text-gray-300">NT$</span></div>
+                            <div class="w-full sm:w-auto border-2 border-primary/80 px-6 py-3 rounded bg-[#0a192f]/50 text-center shadow-[inset_0_0_20px_rgba(0,102,255,0.3)]">
+                                <div class="text-3xl md:text-4xl font-black text-white italic">1,300 <span class="text-lg md:text-xl not-italic text-gray-300">NT$</span></div>
                                 <div class="text-[10px] md:text-xs text-secondary font-bold uppercase tracking-widest mt-2 border-t border-primary/50 pt-2">Pack Price</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Footer Banners (Free Delivery / Taxes) -->
                 <div class="mt-6 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 px-4 md:px-6 py-4">
                     <div class="flex flex-col sm:flex-row items-center gap-2 md:gap-4 md:border-r md:border-primary/50 md:pr-8 text-center sm:text-left">
                         <i class="fa-solid fa-truck-fast text-3xl md:text-4xl text-gold"></i>
@@ -521,7 +535,6 @@
                 </div>
             </div>
         </section>
-
         <section id="payment" class="page-view hidden py-8 md:py-12">
             <div class="container mx-auto px-4 md:px-6 max-w-7xl">
                 
@@ -607,22 +620,28 @@
 
                         <div class="border border-primary/50 rounded-xl p-5 md:p-6 bg-[#0a192f]/40">
                             <h4 class="text-xs md:text-sm text-secondary font-bold uppercase tracking-widest mb-4 text-center sm:text-left">We Accept Transfers From:</h4>
+                            
                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
                                 <div class="bg-white rounded p-2 md:p-3 flex items-center justify-center text-black font-bold text-xs md:text-sm border-2 border-transparent hover:border-primary transition-colors text-center">
-                                    <i class="fa-solid fa-building-columns text-red-600 mr-2 hidden sm:inline"></i> CTBC Bank
+                                    <img src="Images\CTBC_BANK.png" alt="CTBC" class="h-4 md:h-5 w-auto mr-2 object-contain"> CTBC Bank
                                 </div>
+                                
                                 <div class="bg-white rounded p-2 md:p-3 flex items-center justify-center text-black font-bold text-xs md:text-sm border-2 border-transparent hover:border-primary transition-colors text-center">
-                                    <i class="fa-solid fa-mountain text-teal-600 mr-2 hidden sm:inline"></i> E.SUN Bank
+                                    <img src="Images\E sun bank_logo.png" alt="E.SUN" class="h-4 md:h-5 w-auto mr-2 object-contain"> E.SUN Bank
                                 </div>
+                                
                                 <div class="bg-white rounded p-2 md:p-3 flex items-center justify-center text-black font-bold text-xs md:text-sm border-2 border-transparent hover:border-primary transition-colors text-center">
-                                    <i class="fa-solid fa-leaf text-green-700 mr-2 hidden sm:inline"></i> Taiwan Coop
+                                    <img src="Images\Taiwan_Cooperative_bank.png" alt="Taiwan Coop" class="h-4 md:h-5 w-auto mr-2 object-contain"> Taiwan Cooperative Bank
                                 </div>
+                                
                                 <div class="bg-white rounded p-2 md:p-3 flex items-center justify-center text-black font-bold text-xs md:text-sm border-2 border-transparent hover:border-primary transition-colors text-center">
-                                    <i class="fa-solid fa-t text-red-500 mr-2 hidden sm:inline"></i> Taishin Bank
+                                    <img src="Images\Taishin_logo.png" alt="Taishin" class="h-4 md:h-5 w-auto mr-2 object-contain"> Taishin Bank
                                 </div>
+                                
                                 <div class="bg-white rounded p-2 md:p-3 flex items-center justify-center text-black font-bold text-xs md:text-sm border-2 border-transparent hover:border-primary transition-colors text-center">
-                                    <i class="fa-solid fa-tree text-green-600 mr-2 hidden sm:inline"></i> Cathay United
+                                    <img src="Images\Cathay United bank logo.png" alt="Cathay United" class="h-4 md:h-5 w-auto mr-2 object-contain"> Cathay United Bank
                                 </div>
+                                
                                 <div class="rounded p-2 md:p-3 flex items-center justify-center text-gray-400 italic text-[10px] md:text-xs text-center">
                                     (Check availability in your bank)
                                 </div>
@@ -703,7 +722,162 @@
 
             </div>
         </section>
+        <section id="requirements" class="page-view hidden py-8 md:py-12">
+            <div class="container mx-auto px-4 md:px-6 max-w-7xl">
+                
+                <div class="text-center mb-8 md:mb-10">
+                    <h2 class="text-3xl md:text-5xl font-display font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-primary uppercase italic mb-2 tracking-wider">Requirements</h2>
+                    <h3 class="text-xl md:text-2xl font-bold text-white uppercase tracking-widest mb-3">To Get Your <span class="text-primary">EO Card</span></h3>
+                    <p class="text-xs md:text-sm text-gray-300 font-bold tracking-widest uppercase">Your Story &bull; Your Passion &bull; Your Card</p>
+                </div>
 
+                <div class="border-2 border-primary/80 rounded-2xl p-4 md:p-6 bg-[#030b14] shadow-[0_0_30px_rgba(0,102,255,0.2)]">
+
+                    <div class="grid lg:grid-cols-3 gap-6 mb-6">
+                        
+                        <div class="lg:col-span-2 border border-primary/50 rounded-xl p-5 bg-[#0a192f]/60">
+                            <h4 class="text-secondary font-bold uppercase tracking-widest mb-4 border-b border-primary/30 pb-2 text-sm md:text-base"><i class="fa-solid fa-list-check mr-2"></i> To create your custom card, we need:</h4>
+
+                            <div class="flex flex-col md:flex-row gap-6">
+                                <div class="w-full md:w-1/2">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <div class="w-8 h-8 bg-primary rounded flex items-center justify-center font-black text-xl text-white">1</div>
+                                        <h5 class="text-lg font-bold uppercase text-white">Image <span class="text-xs text-gray-400 block normal-case">Of the boy/girl</span></h5>
+                                    </div>
+                                    <ul class="text-sm text-gray-300 space-y-2 mb-4">
+                                        <li><i class="fa-solid fa-circle-check text-primary mr-2"></i> Image with 100% body visible</li>
+                                        <li><i class="fa-solid fa-circle-check text-primary mr-2"></i> Face clearly visible</li>
+                                        <li><i class="fa-solid fa-circle-check text-primary mr-2"></i> No hats or clothing hiding face</li>
+                                    </ul>
+                                    <div class="flex gap-2 justify-center md:justify-start">
+                                        <div class="relative w-20 h-28 border-2 border-green-500 rounded overflow-hidden bg-[#1f2937]">
+                                            <img src="https://placehold.co/150x210/1f2937/ffffff?text=Example" class="w-full h-full object-cover">
+                                            <div class="absolute top-1 right-1 bg-green-500 rounded-full w-4 h-4 flex items-center justify-center"><i class="fa-solid fa-check text-white text-[10px]"></i></div>
+                                        </div>
+                                        <div class="relative w-20 h-28 border-2 border-green-500 rounded overflow-hidden bg-[#1f2937]">
+                                            <img src="https://placehold.co/150x210/1f2937/ffffff?text=Example" class="w-full h-full object-cover">
+                                            <div class="absolute top-1 right-1 bg-green-500 rounded-full w-4 h-4 flex items-center justify-center"><i class="fa-solid fa-check text-white text-[10px]"></i></div>
+                                        </div>
+                                        <div class="relative w-20 h-28 border-2 border-green-500 rounded overflow-hidden bg-[#1f2937]">
+                                            <img src="https://placehold.co/150x210/1f2937/ffffff?text=Example" class="w-full h-full object-cover">
+                                            <div class="absolute top-1 right-1 bg-green-500 rounded-full w-4 h-4 flex items-center justify-center"><i class="fa-solid fa-check text-white text-[10px]"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="w-full md:w-1/2 space-y-3">
+                                    <div class="flex items-center gap-3 bg-white/5 p-2 rounded border border-white/10">
+                                        <div class="w-8 h-8 flex-shrink-0 bg-dark border border-primary rounded flex items-center justify-center font-bold text-primary">2</div>
+                                        <div>
+                                            <h5 class="text-xs font-bold uppercase text-white">Nationality</h5>
+                                            <p class="text-[10px] text-gray-400">Example: Argentina</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 bg-white/5 p-2 rounded border border-white/10">
+                                        <div class="w-8 h-8 flex-shrink-0 bg-dark border border-primary rounded flex items-center justify-center font-bold text-primary">3</div>
+                                        <div>
+                                            <h5 class="text-xs font-bold uppercase text-white">Full Name</h5>
+                                            <p class="text-[10px] text-gray-400">Example: Jimmy Chen</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 bg-white/5 p-2 rounded border border-white/10">
+                                        <div class="w-8 h-8 flex-shrink-0 bg-dark border border-primary rounded flex items-center justify-center font-bold text-primary">4</div>
+                                        <div>
+                                            <h5 class="text-xs font-bold uppercase text-white">Jersey Number</h5>
+                                            <p class="text-[10px] text-gray-400">Example: 10</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 bg-white/5 p-2 rounded border border-white/10">
+                                        <div class="w-8 h-8 flex-shrink-0 bg-dark border border-primary rounded flex items-center justify-center font-bold text-primary">5</div>
+                                        <div>
+                                            <h5 class="text-xs font-bold uppercase text-white">Playing Position</h5>
+                                            <p class="text-[10px] text-gray-400">Example: Forward (FW) / Midfielder (MF)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-gold/50 rounded-xl p-5 bg-gradient-to-b from-[#1a1500] to-[#0a192f]/60 relative overflow-hidden">
+                            <h4 class="text-gold font-bold uppercase tracking-widest mb-4 border-b border-gold/30 pb-2 text-xs md:text-sm"><i class="fa-solid fa-star mr-2"></i> Additional Info <br><span class="text-[9px] md:text-[10px] text-gray-400 font-normal">Depending on Collection</span></h4>
+
+                            <h5 class="text-base md:text-lg font-bold text-white mb-2 uppercase text-center sm:text-left">World Cup Collection</h5>
+                            <ul class="text-xs text-gray-300 space-y-2 mb-4">
+                                <li><i class="fa-solid fa-star text-secondary mr-1 text-[10px]"></i> Name & number: Lyon / 10</li>
+                                <li><i class="fa-solid fa-star text-secondary mr-1 text-[10px]"></i> Country: Argentina</li>
+                                <li><i class="fa-solid fa-star text-secondary mr-1 text-[10px]"></i> Styles: Classic Premium, Cartoon, Retro, Golden, Special Edition.</li>
+                            </ul>
+
+                            <div class="flex justify-center mt-4">
+                                <img src="https://placehold.co/150x210/1e3a8a/ffffff?text=LYON+10" class="w-28 rounded-lg shadow-[0_0_15px_rgba(255,215,0,0.3)] border-2 border-gold/50">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        
+                        <div class="border border-green-500/50 rounded-xl p-4 bg-green-900/10">
+                            <h4 class="text-green-400 font-bold uppercase tracking-widest mb-4 text-center bg-green-500/20 py-1 rounded">Remember</h4>
+                            <div class="flex justify-around text-center">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-green-500 flex items-center justify-center text-green-500 mb-2"><i class="fa-solid fa-check text-xl"></i></div>
+                                    <span class="text-[9px] md:text-[10px] text-gray-300 uppercase font-bold">Regular<br>Image OK</span>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-yellow-500 flex items-center justify-center text-white mb-2"><i class="fa-solid fa-sun text-xl"></i></div>
+                                    <span class="text-[9px] md:text-[10px] text-gray-300 uppercase font-bold">Good<br>Lighting</span>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-yellow-400 flex items-center justify-center text-black mb-2"><i class="fa-solid fa-face-smile text-xl"></i></div>
+                                    <span class="text-[9px] md:text-[10px] text-gray-300 uppercase font-bold">Face<br>Visible</span>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-blue-500 flex items-center justify-center text-white mb-2"><i class="fa-solid fa-user text-xl"></i></div>
+                                    <span class="text-[9px] md:text-[10px] text-gray-300 uppercase font-bold">Full Body<br>Visible</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-red-500/50 rounded-xl p-4 bg-red-900/10">
+                            <h4 class="text-red-400 font-bold uppercase tracking-widest mb-4 text-center bg-red-500/20 py-1 rounded"><i class="fa-solid fa-ban mr-1"></i> Avoid</h4>
+                            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                                <ul class="text-[10px] sm:text-xs text-gray-300 space-y-1 w-full sm:w-1/2">
+                                    <li><i class="fa-solid fa-circle-xmark text-red-500 mr-1"></i> Blurry images</li>
+                                    <li><i class="fa-solid fa-circle-xmark text-red-500 mr-1"></i> Faces covered</li>
+                                    <li><i class="fa-solid fa-circle-xmark text-red-500 mr-1"></i> Dark photos</li>
+                                    <li><i class="fa-solid fa-circle-xmark text-red-500 mr-1"></i> Photos cropped</li>
+                                </ul>
+                                <div class="flex gap-2 w-full sm:w-1/2 justify-center">
+                                    <div class="relative w-10 h-14 md:w-12 md:h-16 border border-red-500 rounded overflow-hidden">
+                                        <img src="https://placehold.co/100x150/1f2937/ffffff?text=Blur" class="w-full h-full object-cover blur-[2px]">
+                                        <div class="absolute top-0 right-0 bg-red-500 rounded-bl w-3 h-3 flex items-center justify-center"><i class="fa-solid fa-xmark text-white text-[8px]"></i></div>
+                                    </div>
+                                    <div class="relative w-10 h-14 md:w-12 md:h-16 border border-red-500 rounded overflow-hidden">
+                                        <img src="https://placehold.co/100x150/1f2937/ffffff?text=Cover" class="w-full h-full object-cover">
+                                        <div class="absolute top-0 right-0 bg-red-500 rounded-bl w-3 h-3 flex items-center justify-center"><i class="fa-solid fa-xmark text-white text-[8px]"></i></div>
+                                    </div>
+                                    <div class="relative w-10 h-14 md:w-12 md:h-16 border border-red-500 rounded overflow-hidden bg-black">
+                                        <img src="https://placehold.co/100x150/000000/333333?text=Dark" class="w-full h-full object-cover opacity-30">
+                                        <div class="absolute top-0 right-0 bg-red-500 rounded-bl w-3 h-3 flex items-center justify-center"><i class="fa-solid fa-xmark text-white text-[8px]"></i></div>
+                                    </div>
+                                    <div class="relative w-10 h-14 md:w-12 md:h-16 border border-red-500 rounded overflow-hidden">
+                                        <img src="https://placehold.co/100x150/1f2937/ffffff?text=Crop" class="w-full h-full object-cover scale-150">
+                                        <div class="absolute top-0 right-0 bg-red-500 rounded-bl w-3 h-3 flex items-center justify-center"><i class="fa-solid fa-xmark text-white text-[8px]"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 text-center border-t border-primary/50 pt-6 px-4">
+                        <h3 class="text-base md:text-xl font-display font-black uppercase italic tracking-widest text-white leading-snug">
+                            Your Story. <span class="text-primary">Your Passion.</span> <span class="text-gold">Your EO Card.</span><br>
+                            <span class="text-xs md:text-sm text-gray-300 mt-2 block font-bold normal-case tracking-normal"><i class="fa-solid fa-trophy text-gold mr-2"></i> Send us your information and turn it into a star. <i class="fa-solid fa-star text-gold ml-2"></i></span>
+                        </h3>
+                    </div>
+
+                </div>
+            </div>
+        </section>
         <section id="faq" class="page-view hidden py-8 md:py-12">
             <div class="container mx-auto px-4 md:px-6 max-w-3xl">
                 <div class="text-center mb-8 md:mb-12">
@@ -922,32 +1096,6 @@
 
             content.classList.toggle('hidden');
             icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
-        }
-
-        function bindBuilderPreview() {
-            const nameInput = document.getElementById('b-name');
-            const numInput = document.getElementById('b-num');
-            const posInput = document.getElementById('b-pos');
-
-            const prevName = document.getElementById('prev-name');
-            const prevNum = document.getElementById('prev-num');
-            const prevPos = document.getElementById('prev-pos');
-
-            if(nameInput) {
-                nameInput.addEventListener('input', (e) => {
-                    prevName.innerText = e.target.value.toUpperCase() || 'JIMMY CHEN';
-                });
-            }
-            if(numInput) {
-                numInput.addEventListener('input', (e) => {
-                    prevNum.innerText = e.target.value || '10';
-                });
-            }
-            if(posInput) {
-                posInput.addEventListener('input', (e) => {
-                    prevPos.innerText = e.target.value.toUpperCase() || 'FW';
-                });
-            }
         }
     </script>
 </body>
